@@ -3,6 +3,33 @@ package app;
 import java.util.ArrayList;
 
 public class Launcher {
+    static NoteStore ns = new NoteStore();
+    static ArrayList<TextNote> storeText = new ArrayList<TextNote>();
+    static ArrayList<TextAndImageNote> storeImageText = new ArrayList<TextAndImageNote>();
+
+
+
+    static void displayTextNotes() {
+        
+        storeText = ns.getAllTextNotes();
+
+        for(TextNote ele : storeText){
+            System.out.println(ele.getText());
+        }
+    }
+
+    static void displayTextAndImageNotes() {
+        
+        
+        storeImageText = ns.getAllTextAndImageNotes();
+
+        for(TextAndImageNote ele : storeImageText){
+            System.out.println(ele.getText()+","+ele.getUrlText());
+        }
+    }
+
+
+
 
     public static void main(String[] args) throws Exception {
 
@@ -15,7 +42,7 @@ public class Launcher {
         String texturl_note_2="//url/image/img2.jpg";
 
 
-        NoteStore ns = new NoteStore();
+        // NoteStore ns = new NoteStore();
         ns.storeNote(text_note_1);
         ns.storeNote(text_note_2);
 
@@ -23,29 +50,10 @@ public class Launcher {
         ns.storeNote(textimage_note_1, texturl_note_1);
         ns.storeNote(textimage_note_2, texturl_note_2);
 
-        //for textnotes
-        ArrayList<TextNote> storeText = new ArrayList<TextNote>();
-
-       
-        storeText = ns.getAllTextNotes();
-
-        for(TextNote ele : storeText){
-            System.out.println(ele.getText());
-        }
-
-        //for text and url image
-        ArrayList<TextAndImageNote> storeImageText = new ArrayList<TextAndImageNote>();
-
-       
-        storeImageText = ns.getAllTextAndImageNotes();
-
-        for(TextAndImageNote ele : storeImageText){
-            System.out.println(ele.getText()+","+ele.getUrlText());
-        }
-
 
         //with method
         displayTextNotes();
+        displayTextAndImageNotes();
         
         
 
@@ -53,16 +61,7 @@ public class Launcher {
     }
 
 
-    public static void displayTextNotes() {
-        ArrayList<TextNote> storeText = new ArrayList<TextNote>();
-        NoteStore ns = new NoteStore();
-       
-        storeText = ns.getAllTextNotes();
-
-        for(TextNote ele : storeText){
-            System.out.println(ele.getText());
-        }
-    }
+     
 
 
 }
